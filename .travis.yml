@@ -1,0 +1,22 @@
+# Set of commands to the travis, that it needs to excecute, whenever we make some changes to our application
+
+# Need admin privileges to be able to run docker
+sudo: required
+
+# Need a docker to build our image and run some application's tests
+services:
+  - docker
+
+# Build an image of our application
+# -> Use the Dockerfile.dev, since we want to test our application first, before deploying it into production
+before_install:
+  - docker build -f Dockerfile.dev -t rustik0612/learning-docker-react .
+
+# Set commands to travis to run tests of our application
+# "-e CI=true" ->
+#   -e - is a flag for environmental variables
+#   CI=true - is an indicator to jist, that we want to run our tests in a CI mode
+#             == need to exit, whenever tests are passed
+#             (the default behavior is to wait for the commands from the command line prompt)
+script:
+  - docker run -e CI=true rustik0612/learning-docker-react npm run test
