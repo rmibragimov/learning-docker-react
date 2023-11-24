@@ -1,4 +1,5 @@
 # Set of commands to the travis, that it needs to excecute, whenever we make some changes to our application
+language: generic
 
 # Need admin privileges to be able to run docker
 sudo: required
