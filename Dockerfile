@@ -18,4 +18,6 @@ COPY --from=builder /app/build /usr/share/nginx/html
 
 # Run nginx server
 # No run command, since nginx do it for us automatically
-
+# For deployment,
+# explicitly indicate AWS Elasticbeanstalk to map all of the requests to port 80 inside docker container
+EXPOSE 80
