@@ -21,3 +21,16 @@ before_install:
 #             (the default behavior is to wait for the commands from the command line prompt)
 script:
   - docker run -e CI=true rustik0612/learning-docker-react npm run test
+
+# Set commands for deployment on AWS elasticbeanstalk
+deploy:
+  provider: "elasticbeanstalk"
+  region: "eu-north-1"
+  app: "learning-docker-react"
+  env: "learning-docker-react-env"
+  bucket_name: "elasticbeanstalk-eu-north-1-305177439567"
+  bucket_path: "learning-docker-react"
+  on:
+    branch: master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key: "$AWS_SECRET_ACCESS_KEY"
